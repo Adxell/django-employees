@@ -3,7 +3,7 @@
 
 Base de datos postgresql
 
-Requeriomientos
+Requerimientos
 
 * Tener docker y docker compose instalado
 
