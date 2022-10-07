@@ -1,0 +1,71 @@
+{% extends 'base.html' %} {% block title %}Employees Page{% endblock title%}
+asdasdasdasd {% block container %} List employees
+<div class="card">
+  <div class="card-header">
+    <a
+      name=""
+      id=""
+      class="btn btn-success"
+      href="{% url 'create' %}"
+      role="button"
+      >Create employee</a
+    >
+  </div>
+  <div class="card-body">
+    <form action="{% url 'filter_by_name' %}" method="get" class="d-flex">
+        <div class="col-12 d-flex" >
+            <div class="me-2 mb-2">
+                <input type="text" name="name_employee" id="" class="form-control" placeholder="Filte by name" aria-describedby="helpId">
+            </div>
+            <div class="me-2 mb-2">
+                <input type="text" name="card_id" id="" class="form-control" placeholder="Filte by Card id" aria-describedby="helpId">
+            </div>
+            <div class="me-2 mb-2">
+                <input type="text" name="email" id="" class="form-control" placeholder="Filte by Email" aria-describedby="helpId">
+            </div>
+            <div class="me-2 mb-2">
+                <input name="" id="" class="btn btn-primary" type="submit" value="Filter">
+            </div>
+        </div>
+    </form>
+    <div class="table-responsive">
+      <table class="table table-primary">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Id card</th>
+            <th scope="col">Email</th>
+            <th scope="col">Date</th>
+            <th scope="col">Phone_number</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for employee in employees %}
+          <tr class="">
+            <td scope="row">{{ employee.name_employee }}</td>
+            <td>{{ employee.card_id }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.date }}</td>
+            <td>{{ employee.phone_number }}</td>
+            <td>
+              <a
+                name=""
+                id=""
+                class="btn btn-primary"
+                href="{% url 'edit' employee.id %}"
+                role="button"
+                >Edit</a
+              >
+              <a name="" id="" class="btn btn-danger" href={% url 'delete' employee.id %} role="button"
+                >Delete</a
+              >
+            </td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+{% endblock %}

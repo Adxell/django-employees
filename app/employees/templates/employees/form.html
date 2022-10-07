@@ -1,0 +1,36 @@
+
+<form method="post">
+    {% csrf_token %}
+    {% for field in employeeform %}
+        {% if field.name == "date" %}
+            <div class="mb-3">
+                <label for="" class="form-label">{{field.label}}</label>
+                <input 
+                    type="date"
+                    class="form-control" 
+                    name="{{field.name}}" 
+                    id="" 
+                    aria-describedby="helpId"
+                    value ="{{ field.value  }}"
+                >   
+            </div>
+        <div class="col-12 help-text">{{ field.errors }}</div>
+        
+        {% else %}
+        <div class="mb-3">
+        <label for="" class="form-label">{{field.label}}</label>
+        <input 
+            type="{{field.field.widget.input_type}}"
+            class="form-control" 
+            name="{{field.name}}" 
+            id="" 
+            aria-describedby="helpId"
+            value ="{{ field.value|default_if_none:'' }}"
+        >
+        </div>
+        <div class="col-12 help-text">{{ field.errors }}</div>
+        {% endif %}
+    {% endfor %}
+  
+    <input name="" id="" class="btn btn-success"  type="submit" value="Send data" >
+</from>
