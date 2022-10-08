@@ -26,8 +26,13 @@
         >
         <a class="nav-item nav-link" href="{% url 'employees' %}">Employees</a>
       </div>
-      <div class="mx-3">
-        <a class="nav-item nav-link btn btn-danger p-2 text-light" href="{% url 'employees' %}">Logout</a>
+      <div class="mx-3 d-flex">
+        {% if user.is_authenticated  %}
+          <h4 class="mx-2 text-capitalize pt-2 fs-5">{{ user.username }}</h4>
+          <a class="nav-item nav-link btn btn-danger p-2 text-light" href="{% url 'logout' %}">Logout</a>
+        {% else %}
+          <a class="nav-item nav-link btn btn-success p-2 text-light" href="{% url 'login' %}">Login</a>
+        {% endif %}
       </div>
     </nav>
     <div class="container">
