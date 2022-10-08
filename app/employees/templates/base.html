@@ -19,12 +19,15 @@
   </head>
 
   <body>
-    <nav class="navbar navbar-expand navbar-light bg-light">
+    <nav class="navbar navbar-expand navbar-light bg-light d-flex justify-content-between">
       <div class="nav navbar-nav">
         <a class="nav-item nav-link active" href="{% url 'index' %}" aria-current="page"
           >Home</span></a
         >
-        <a class="nav-item nav-link" href="{% url 'employees' %}">empleados</a>
+        <a class="nav-item nav-link" href="{% url 'employees' %}">Employees</a>
+      </div>
+      <div class="mx-3">
+        <a class="nav-item nav-link btn btn-danger p-2 text-light" href="{% url 'employees' %}">Logout</a>
       </div>
     </nav>
     <div class="container">
