@@ -1,20 +1,35 @@
-version: "3.8"
+version: "3.9"
+
 services:
-  db:
-    image: postgres
-    environment:
-      POSTGRES_USER: app
-      POSTGRES_DB: app
-      POSTGRES_PASSWORD: app1234
+  pgdb:
+    container_name: pgdb
+    image: postgres:13.1
+    env_file: ./pgdb/db.env
     volumes:
-      - ./data/pgdata:/var/lib/posgresql/data
-  web:
-    build:
-      context: .
+      - postgres_data:/var/lib/postgresql/data/
+
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    volumes:
+      - static:/static
+      - media:/media
     ports:
-      - "8000:8000"
+      - 80:80
+
+  django:
+    container_name: django
+    build: ./app
+    env_file: ./app/django.env
     volumes:
+      - static:/static
+      - media:/media
       - ./app:/app
-    command: python manage.py runserver 0.0.0.0:8000
     depends_on:
-      - db
+      - pgdb
+      - nginx
+
+volumes:
+  postgres_data:
+  static:
+  media:
